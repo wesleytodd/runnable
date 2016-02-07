@@ -1,0 +1,29 @@
+{
+  "name": "runnable",
+  "version": "1.0.0",
+  "description": "Export a runnable method",
+  "main": "index.js",
+  "scripts": {
+    "test": "happiness && mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wesleytodd/runnable.git"
+  },
+  "keywords": [
+    "runnable",
+    "executable",
+    "micro-services",
+    "soa"
+  ],
+  "author": "Wes Todd",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wesleytodd/runnable/issues"
+  },
+  "homepage": "https://github.com/wesleytodd/runnable#readme",
+  "devDependencies": {
+    "happiness": "^5.5.0",
+    "mocha": "^2.4.5"
+  }
+}
