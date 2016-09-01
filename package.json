@@ -25,5 +25,8 @@
   "devDependencies": {
     "happiness": "^5.5.0",
     "mocha": "^2.4.5"
+  },
+  "dependencies": {
+    "callsite": "^1.0.0"
   }
 }
