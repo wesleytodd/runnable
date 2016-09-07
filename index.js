@@ -1,10 +1,10 @@
-var stack = require('callsite');
-
 module.exports = function runnable (fnc, defaults, ctx) {
-	var s = stack();
+	// Default context to the parent module
+	ctx = ctx || module.parent;
+
 	// If called directly just run it with the defaults
-	if (require.main.filename === s[1].getFileName()) {
-		return fnc.apply(ctx || null, defaults || []);
+	if (ctx.parent === null) {
+		return fnc.apply((ctx && ctx.exports) || null, defaults || []);
 	}
 
 	// Loaded via require, so just return
