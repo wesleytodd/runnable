@@ -18,6 +18,8 @@ Wraps a function so that it is called when run directly but returned when requir
 $ npm install runnable
 ```
 
+Basic usage:
+
 ```javascript
 // index.js
 
@@ -27,7 +29,7 @@ module.exports = runnable(function (opts) {
 	console.log(opts.foo);
 }, [{
 	foo: 'bar'
-}]); // bar
+}], module); // bar
 ```
 
 ```javascript
@@ -40,22 +42,65 @@ foo({
 }); // other bar
 ```
 
+Usage with multiple runnable instances in one process is a little bit different due to the behavior
+of node's `module.parent` implementation which sets the parent to the first module to import
+the file, as opposed to the actual parent which required it in this time.  So to work in this 
+kind of an enviornment you need to pass a final parameter to the runnable call.
+
+```javascript
+var runnable = require('runnable');
+
+module.exports = runnable(function foo () {
+	console.log('foo');
+}, module);
+```
+
+```javascript
+var runnable = require('runnable');
+
+module.exports = runnable(function bar () {
+	console.log('bar');
+}, module);
+```
+
+```javascript
+var foo = require('../foo.js');
+var bar = require('../bar.js');
+
+foo(); // foo
+bar(); // bar
+```
+
+## Usage with Browserify
+
+If you are using this module with browserify, it will not work by default.  Browserify does 
+not implement `module.parent` or `require.main`.  Luckily Browserify allows you to provide your
+own require implementation via the `prelude` option.  This module comes with an implementation 
+which implements the required fields.  Hopefully this will get added so Browserify once I make 
+the case.  In the mean time you can do this:
+
+```
+var b = browserify('index.js', {
+	prelude: require('runnable/browserify-prelude')
+}).bundle();
+```
+
 ### API
 
 ```javascript
-runnable(fnc <Function>[,defaults <Array>[, context <Any>]]);
+runnable(fnc <Function>[,defaults <Array>[, module <Object>]]);
 ```
 
 - `fnc`: The runnable function
 - `defaults`: Defaults that will be passed to the function when called directly
-- `context`: The context the function will be called with (ex: `fnc.apply(ctx, defaults)`)
+- `module`: The module the function is declared in, literally `module` from the commonjs file
 
 ## Usage in micro-services/SOA
 
 This is an example of how we use this pattern to give production configuration to apps in our SOA setup.  In development we just run `node index.js`, and in prod we run `./bin/server` which loads production configuration and registers with our service discovery.
 
 ```javascript
-// ./index.js
+// index.js
 
 var app = require('express')();
 var runnable = require('runnable');
@@ -66,11 +111,11 @@ module.exports = runnable(function (opts) {
 	});
 }, [{
 	port: 4000
-}]);
+}], module);
 ```
 
 ```javascript
-// ./bin/server
+// bin/server
 
 var app = require('../');
 app({

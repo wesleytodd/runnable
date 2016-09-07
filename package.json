@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/wesleytodd/runnable#readme",
   "devDependencies": {
+    "browserify": "^13.1.0",
     "happiness": "^5.5.0",
     "mocha": "^2.4.5"
   },
