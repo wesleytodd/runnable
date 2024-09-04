@@ -3,7 +3,7 @@ module.exports = function runnable (fnc, defaults, ctx) {
   ctx = ctx || module.parent;
 
   // If called directly just run it with the defaults
-  if (ctx.parent === null) {
+  if (require.main === ctx || ctx.parent === null) {
     return fnc.apply((ctx && ctx.exports) || null, defaults || []);
   }
 
