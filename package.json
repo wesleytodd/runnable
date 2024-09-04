@@ -4,7 +4,8 @@
   "description": "Export a runnable method",
   "main": "index.js",
   "scripts": {
-    "test": "happiness && mocha"
+    "test": "mocha",
+    "lint": "semistandard"
   },
   "repository": {
     "type": "git",
@@ -24,8 +25,8 @@
   "homepage": "https://github.com/wesleytodd/runnable#readme",
   "devDependencies": {
     "browserify": "^17.0.0",
-    "happiness": "^5.5.0",
-    "mocha": "^10.7.3"
+    "mocha": "^10.7.3",
+    "semistandard": "^17.0.0"
   },
   "dependencies": {
     "callsite": "^1.0.0"
