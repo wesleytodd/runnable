@@ -1,5 +1,5 @@
-var mod = require('./index');
+const mod = require('./index');
 
 mod({
-	foo: 'other'
+  foo: 'other'
 });
