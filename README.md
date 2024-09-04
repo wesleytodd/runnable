@@ -18,11 +18,34 @@ Wraps a function so that it is called when run directly but returned when requir
 $ npm install runnable
 ```
 
-Basic usage:
+ESM usage:
+
+```javascript
+// index.mjs
+import runnable from 'runnable';
+
+export default runnable(function (opts) {
+	console.log(opts.foo);
+}, [{
+	foo: 'bar'
+}], import.meta); // bar
+```
+
+```javascript
+// bin/foo.mjs
+import foo from '../index.mjs';
+
+foo({
+	foo: 'other bar'
+}); // other bar
+```
+
+Unlike the CJS version, ESM requires passing the `import.meta` context.
+
+CJS usage:
 
 ```javascript
 // index.js
-
 var runnable = require('runnable');
 
 module.exports = runnable(function (opts) {
@@ -34,7 +57,6 @@ module.exports = runnable(function (opts) {
 
 ```javascript
 // bin/foo.js
-
 var foo = require('../index.js');
 
 foo({
@@ -45,7 +67,7 @@ foo({
 Usage with multiple runnable instances in one process is a little bit different due to the behavior
 of node's `module.parent` implementation which sets the parent to the first module to import
 the file, as opposed to the actual parent which required it in this time.  So to work in this 
-kind of an enviornment you need to pass a final parameter to the runnable call.
+kind of an environment you need to pass a final parameter to the runnable call.
 
 ```javascript
 var runnable = require('runnable');
