@@ -7,7 +7,7 @@ module.exports = function runnable (fnc, defaults = [], ctx) {
   ctx = ctx || module.parent;
 
   if (!ctx) {
-    throw new TypeError(`No module metadata. If using an ESM entry, pass import.meta`);
+    throw new TypeError('No module metadata. If using an ESM entry, pass import.meta');
   }
 
   // ESM is expected to pass in a import.meta object
