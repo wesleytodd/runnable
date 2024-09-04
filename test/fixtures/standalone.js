@@ -1,7 +1,7 @@
-var runnable = require('../../');
+const runnable = require('../../');
 
 module.exports = runnable(function index (opts) {
-	console.log(opts.standalone);
+  console.log(opts.standalone);
 }, [{
-	standalone: 'foobar'
+  standalone: 'foobar'
 }]);

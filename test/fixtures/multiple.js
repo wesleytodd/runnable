@@ -1,11 +1,11 @@
-var runnable = require('../../');
-var index = require('./index');
+const runnable = require('../../');
+const index = require('./index');
 
 module.exports = runnable(function multiple (opts) {
-	console.log(opts.beep);
-	index({
-		foo: 'fop'
-	});
+  console.log(opts.beep);
+  index({
+    foo: 'fop'
+  });
 }, [{
-	beep: 'boop'
+  beep: 'boop'
 }], module);
