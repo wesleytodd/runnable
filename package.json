@@ -25,7 +25,7 @@
   "devDependencies": {
     "browserify": "^13.1.0",
     "happiness": "^5.5.0",
-    "mocha": "^2.4.5"
+    "mocha": "^10.7.3"
   },
   "dependencies": {
     "callsite": "^1.0.0"
