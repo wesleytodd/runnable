@@ -2,8 +2,8 @@
 
 [![NPM Version][npm-image]][npm-url]
 [![NPM Downloads][downloads-image]][downloads-url]
-[![Build Status](https://travis-ci.org/wesleytodd/runnable.svg?branch=master)](https://travis-ci.org/wesleytodd/runnable)
-[![js-happiness-style](https://img.shields.io/badge/code%20style-happiness-brightgreen.svg)](https://github.com/JedWatson/happiness)
+[![Test](https://github.com/wesleytodd/runnable/actions/workflows/ci.yml/badge.svg)](https://github.com/wesleytodd/runnable/actions/workflows/ci.yml)
+[![js-semistandard-style](https://img.shields.io/badge/code%20style-semistandard-brightgreen.svg)](https://github.com/standard/semistandard)
 
 [npm-image]: https://img.shields.io/npm/v/runnable.svg
 [npm-url]: https://npmjs.org/package/runnable
